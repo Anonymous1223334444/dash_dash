@@ -14,7 +14,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Badge } from '@/components/ui/badge';
-import { Trash2, Edit, Plus } from 'lucide-react';
+import { Trash2, CreditCard as Edit, Plus } from 'lucide-react';
 
 type ProjectFormData = {
   name: string;
