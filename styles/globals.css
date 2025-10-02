@@ -118,9 +118,6 @@
 @layer base {
   * {
     @apply border-border;
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 0.3s;
   }
   
   html {
@@ -129,26 +126,7 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-                color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* Dynamic theme properties */
-  :root {
-    --saturation: 100%;
-    --contrast: 100%;
-    --radius: 0.75rem;
-  }
-  
-  .rounded-elements {
-    border-radius: var(--radius);
-  }
-  
-  /* Disable transition during theme change for smoother effect */
-  .theme-transition *,
-  .theme-transition {
-    transition: none !important;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
   /* Smooth scrollbar */

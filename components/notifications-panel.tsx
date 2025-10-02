@@ -99,10 +99,10 @@ export function NotificationsPanel() {
 
   const getPriorityBadge = (priority: Notification["priority"]) => {
     switch (priority) {
-      case "high": return <Badge variant="destructive" className="text-xs">Haute</Badge>
+      case "high": return <Badge variant="destructive" className="text-xs">Élevée</Badge>
       case "medium": return <Badge variant="secondary" className="text-xs bg-yellow-500/10 text-yellow-600 dark:text-yellow-400">Moyenne</Badge>
-      case "low": return <Badge variant="secondary" className="text-xs bg-green-500/10 text-green-600 dark:text-green-400">Basse</Badge>
-      default: return <Badge variant="secondary" className="text-xs">Normal</Badge>
+      case "low": return <Badge variant="secondary" className="text-xs bg-green-500/10 text-green-600 dark:text-green-400">Faible</Badge>
+      default: return <Badge variant="secondary" className="text-xs">Normale</Badge>
     }
   }
 
@@ -242,7 +242,7 @@ export function NotificationsPanel() {
       {/* Backdrop when panel is open */}
       {isOpen && (
         <div 
-          className="fixed inset-0 z-40 bg-black/10 backdrop-blur-sm" 
+          className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm" 
           onClick={() => setIsOpen(false)}
         />
       )}

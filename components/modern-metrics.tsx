@@ -114,13 +114,6 @@ export function ModernMetric({
             >
               <Icon className={cn("h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 transition-colors duration-200", color)} />
             </div>
-            
-            {/* Pulse effect */}
-            <div className={cn(
-              "absolute inset-0 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300",
-              bgColor,
-              "animate-ping"
-            )} />
           </div>
         </div>
 

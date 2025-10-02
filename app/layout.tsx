@@ -11,9 +11,9 @@ import { ThemeTransition } from "@/components/theme-transition"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+  title: "Dashboard Paens",
+  description: "Créé avec Drew",
+  generator: "npm",
 }
 
 export default function RootLayout({

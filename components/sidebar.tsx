@@ -48,7 +48,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
               </div>
               <div>
                 <span className="font-bold text-foreground text-sm">PAENS</span>
-                <div className="text-xs text-muted-foreground">Dashboard BM</div>
+                <div className="text-xs text-muted-foreground">Tableau de bord BM</div>
               </div>
             </div>
           )}
@@ -95,15 +95,15 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
               <div className="text-xs text-muted-foreground">Projet PAENS</div>
               <div className="space-y-2">
                 <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Budget:</span>
+                  <span className="text-muted-foreground">Budget :</span>
                   <span className="font-medium">89.98 Mds</span>
                 </div>
                 <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Progression:</span>
+                  <span className="text-muted-foreground">Progression :</span>
                   <span className="font-medium text-blue-600">68%</span>
                 </div>
                 <div className="flex justify-between text-xs">
-                  <span className="text-muted-foreground">Coordinateur:</span>
+                  <span className="text-muted-foreground">Coordinateur :</span>
                   <span className="font-medium">S. SENE</span>
                 </div>
               </div>

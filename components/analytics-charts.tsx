@@ -170,7 +170,6 @@ export function AnalyticsCharts() {
               </div>
               <div className="relative">
                 <Progress value={24} className="h-2" />
-                <div className="absolute top-0 left-0 h-full w-6 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full animate-pulse" />
               </div>
             </div>
             <div className="space-y-2">
@@ -180,7 +179,6 @@ export function AnalyticsCharts() {
               </div>
               <div className="relative">
                 <Progress value={60} className="h-2" />
-                <div className="absolute top-0 left-0 h-full w-15 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
               </div>
             </div>
             <div className="space-y-2">
@@ -190,7 +188,6 @@ export function AnalyticsCharts() {
               </div>
               <div className="relative">
                 <Progress value={12} className="h-2" />
-                <div className="absolute top-0 left-0 h-full w-3 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
               </div>
             </div>
             <div className="space-y-2">
@@ -200,7 +197,6 @@ export function AnalyticsCharts() {
               </div>
               <div className="relative">
                 <Progress value={32} className="h-2" />
-                <div className="absolute top-0 left-0 h-full w-8 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full animate-pulse" style={{ animationDelay: '1.5s' }} />
               </div>
             </div>
           </div>

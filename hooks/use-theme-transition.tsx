@@ -34,81 +34,62 @@ export function ThemeTransitionProvider({ children }: { children: React.ReactNod
   const { resolvedTheme, setTheme } = useTheme()
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [overlayTheme, setOverlayTheme] = useState<ThemeMode>(DEFAULT_THEME)
-  const timeoutsRef = useRef<number[]>([])
-  const [origin, setOrigin] = useState<ThemeOrigin | null>(null)
-
-  const clearTimers = useCallback(() => {
-    timeoutsRef.current.forEach((id) => window.clearTimeout(id))
-    timeoutsRef.current = []
-  }, [])
-
-  const scheduleTimeout = useCallback(
-    (handler: () => void, delay: number) => {
-      const id = window.setTimeout(handler, delay)
-      timeoutsRef.current.push(id)
-      return id
-    },
-    []
-  )
-
-  useEffect(() => {
-    return () => {
-      clearTimers()
-    }
-  }, [clearTimers])
-
-  useEffect(() => {
-    if (!isTransitioning && resolvedTheme) {
-      setOverlayTheme(sanitizeTheme(resolvedTheme))
-    }
-  }, [isTransitioning, resolvedTheme])
+  const [overlayOrigin, setOverlayOrigin] = useState<ThemeOrigin | null>(null)
 
   const startTransition = useCallback(
-    (targetTheme: ThemeMode, at?: ThemeOrigin) => {
-      clearTimers()
-      setOrigin(at ?? { x: window.innerWidth / 2, y: window.innerHeight / 2 })
+    (targetTheme: ThemeMode, origin?: ThemeOrigin) => {
+      if (isTransitioning) return
+      
+      // Set up the overlay to show the TARGET theme
+      setOverlayOrigin(origin || { x: window.innerWidth / 2, y: window.innerHeight / 2 })
       setOverlayTheme(targetTheme)
       setIsTransitioning(true)
 
-      // Give the overlay 1 frame to mount before flipping theme
-      scheduleTimeout(() => setTheme(targetTheme), 80)
-
-      // Stop overlay after animation
-      scheduleTimeout(() => {
+      // After animation completes, actually change the theme and cleanup
+      setTimeout(() => {
+        setTheme(targetTheme)
         setIsTransitioning(false)
-        setOverlayTheme(targetTheme)
-        setOrigin(null)
-        clearTimers()
-      }, 520)
+        setOverlayOrigin(null)
+      }, 500) // Match animation duration
     },
-    [clearTimers, scheduleTimeout, setTheme]
+    [isTransitioning, setTheme]
   )
 
   const toggleTheme = useCallback(
-    (at?: ThemeOrigin) => {
-      if (isTransitioning) return
+    (origin?: ThemeOrigin) => {
       const currentTheme = sanitizeTheme(resolvedTheme)
       const targetTheme: ThemeMode = currentTheme === "light" ? "dark" : "light"
-      startTransition(targetTheme, at)
+      startTransition(targetTheme, origin)
     },
-    [isTransitioning, resolvedTheme, startTransition]
+    [resolvedTheme, startTransition]
   )
 
   const setThemeWithTransition = useCallback(
-    (target: ThemeMode, at?: ThemeOrigin) => {
-      if (isTransitioning) return
+    (target: ThemeMode, origin?: ThemeOrigin) => {
       const targetTheme = sanitizeTheme(target)
-      startTransition(targetTheme, at)
+      if (targetTheme !== sanitizeTheme(resolvedTheme)) {
+        startTransition(targetTheme, origin)
+      }
     },
-    [isTransitioning, startTransition]
+    [resolvedTheme, startTransition]
   )
 
   const value = useMemo(
-    () => ({ isTransitioning, overlayTheme, toggleTheme, setThemeWithTransition, overlayOrigin: origin }),
-    [isTransitioning, overlayTheme, toggleTheme, setThemeWithTransition, origin]
+    () => ({ 
+      isTransitioning, 
+      overlayTheme, 
+      toggleTheme, 
+      setThemeWithTransition, 
+      overlayOrigin 
+    }),
+    [isTransitioning, overlayTheme, toggleTheme, setThemeWithTransition, overlayOrigin]
   )
 
-  return <ThemeTransitionContext.Provider value={value}>{children}</ThemeTransitionContext.Provider>
+  return (
+    <ThemeTransitionContext.Provider value={value}>
+      {children}
+    </ThemeTransitionContext.Provider>
+  )
 }
 
 export function useThemeTransition() {

@@ -240,7 +240,6 @@ export function TeamMembersGrid({ organization, members, color }: TeamMembersGri
             <div className="flex items-center space-x-2 sm:space-x-3">
               <div className="relative flex-shrink-0">
                 <Avatar className="h-10 w-10 sm:h-12 sm:w-12">
-                  <AvatarImage src={`/.jpg?height=48&width=48&query=${member.name.split(" ")[0]}+professional`} />
                   <AvatarFallback className="text-xs sm:text-sm font-semibold" style={{ backgroundColor: color }}>
                     {member.name
                       .split(" ")
@@ -285,7 +284,7 @@ export function TeamMembersGrid({ organization, members, color }: TeamMembersGri
             </div>
 
             <div className="space-y-1 sm:space-y-2">
-              <p className="text-xs sm:text-sm font-medium">Expertises:</p>
+              <p className="text-xs sm:text-sm font-medium">Expertises :</p>
               <div className="flex flex-wrap gap-1">
                 {member.expertise.slice(0, 2).map((skill) => (
                   <Badge key={skill} variant="secondary" className="text-xs">

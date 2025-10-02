@@ -11,6 +11,8 @@ import {
   Menu, X, Sparkles, Zap, Activity, ArrowRight, Dot, Search
 } from "lucide-react"
 
+import { organizationMembers } from "@/components/team-members-grid";
+
 interface ModernSidebarProps {
   activeTab: string
   onTabChange: (tab: string) => void
@@ -18,10 +20,12 @@ interface ModernSidebarProps {
   setCollapsed: (collapsed: boolean) => void
 }
 
+const totalMembers = Object.values(organizationMembers).reduce((acc, members) => acc + members.length, 0);
+
 const menuItems = [
   {
     id: "vue-ensemble",
-    label: "Dashboard",
+    label: "Tableau de bord",
     icon: Home,
     color: "text-blue-600 dark:text-blue-400",
     bgColor: "bg-blue-50/80 dark:bg-blue-950/50",
@@ -30,7 +34,7 @@ const menuItems = [
   },
   {
     id: "analytiques",
-    label: "Analytics",
+    label: "Analytiques",
     icon: TrendingUp,
     color: "text-emerald-600 dark:text-emerald-400",
     bgColor: "bg-emerald-50/80 dark:bg-emerald-950/50",
@@ -39,7 +43,7 @@ const menuItems = [
   },
   {
     id: "calendrier",
-    label: "Calendar",
+    label: "Calendrier",
     icon: Calendar,
     color: "text-violet-600 dark:text-violet-400",
     bgColor: "bg-violet-50/80 dark:bg-violet-950/50",
@@ -48,16 +52,17 @@ const menuItems = [
   },
   {
     id: "equipe",
-    label: "Teams",
+    label: "Équipes",
     icon: Users,
     color: "text-orange-600 dark:text-orange-400",
     bgColor: "bg-orange-50/80 dark:bg-orange-950/50",
     gradient: "from-orange-500/10 via-orange-400/5 to-orange-600/10",
     description: "Gestion équipes",
+    badge: totalMembers.toString(),
   },
   {
     id: "projets",
-    label: "Projects",
+    label: "Projets",
     icon: BarChart3,
     color: "text-indigo-600 dark:text-indigo-400",
     bgColor: "bg-indigo-50/80 dark:bg-indigo-950/50",
@@ -66,7 +71,7 @@ const menuItems = [
   },
   {
     id: "actions-bloquees",
-    label: "Blocked Actions",
+    label: "Actions Bloquées",
     icon: AlertTriangle,
     color: "text-rose-600 dark:text-rose-400",
     bgColor: "bg-rose-50/80 dark:bg-rose-950/50",
@@ -77,7 +82,7 @@ const menuItems = [
   },
   {
     id: "rapports",
-    label: "Reports",
+    label: "Rapports",
     icon: FileText,
     color: "text-teal-600 dark:text-teal-400",
     bgColor: "bg-teal-50/80 dark:bg-teal-950/50",
@@ -86,7 +91,7 @@ const menuItems = [
   },
   {
     id: "objectifs",
-    label: "Goals",
+    label: "Objectifs",
     icon: Target,
     color: "text-pink-600 dark:text-pink-400",
     bgColor: "bg-pink-50/80 dark:bg-pink-950/50",
@@ -95,7 +100,7 @@ const menuItems = [
   },
   {
     id: "parametres",
-    label: "Settings",
+    label: "Paramètres",
     icon: Settings,
     color: "text-slate-600 dark:text-slate-400",
     bgColor: "bg-slate-50/80 dark:bg-slate-950/50",
@@ -178,7 +183,7 @@ export function ModernSidebar({ activeTab, onTabChange, collapsed, setCollapsed 
               <div className="min-w-0 flex-1">
                 <h2 className="font-bold text-sidebar-foreground text-xl truncate tracking-tight">PAENS</h2>
                 <p className="text-sm text-sidebar-foreground/70 truncate flex items-center gap-2 mt-1">
-                  Project Dashboard
+                  Tableau de Bord Projet
                   <Zap className="w-3 h-3 text-yellow-500 animate-pulse" />
                 </p>
               </div>
@@ -227,11 +232,11 @@ export function ModernSidebar({ activeTab, onTabChange, collapsed, setCollapsed 
             {(!collapsed || mobileOpen) && (
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-sidebar-foreground truncate text-lg">Samba SENE</p>
-                <p className="text-sm text-sidebar-foreground/70 truncate">Project Coordinator</p>
+                <p className="text-sm text-sidebar-foreground/70 truncate">Coordinateur de Projet</p>
                 <div className="flex items-center gap-2 mt-2">
                   <Badge variant="secondary" className="text-xs bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
                     <Dot className="w-3 h-3 text-emerald-500 animate-pulse mr-1" />
-                    Online
+                    En ligne
                   </Badge>
                 </div>
               </div>
@@ -251,7 +256,7 @@ export function ModernSidebar({ activeTab, onTabChange, collapsed, setCollapsed 
               </div>
               <div className="text-center">
                 <div className="text-sm font-semibold text-purple-500">68%</div>
-                <div className="text-[9px] opacity-75">Avg</div>
+                <div className="text-[9px] opacity-75">Moy</div>
               </div>
             </div>
           )}

@@ -82,6 +82,7 @@ export function AdvancedAnalyticsChart({
                   border: '1px solid var(--border)',
                   borderRadius: '0.5rem',
                 }} 
+                itemStyle={{ color: 'var(--foreground)' }}
               />
               <Legend />
               <Line 
@@ -119,6 +120,7 @@ export function AdvancedAnalyticsChart({
                   border: '1px solid var(--border)',
                   borderRadius: '0.5rem',
                 }} 
+                itemStyle={{ color: 'var(--foreground)' }}
               />
             </PieChart>
           </ResponsiveContainer>
@@ -152,6 +154,8 @@ export function AdvancedAnalyticsChart({
                   border: '1px solid var(--border)',
                   borderRadius: '0.5rem',
                 }} 
+                itemStyle={{ color: 'var(--foreground)' }}
+                cursor={{ fill: 'transparent' }}
               />
               <Legend />
               <Bar 
